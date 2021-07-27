@@ -11,9 +11,10 @@
       <tbody>
         <tr v-for="item in dataArray" :key="item.CountryCode">
           <td>{{ item.Country }}</td>
-          <td>{{ item.CountryCode }}</td>
           <td>{{ format(item.TotalDeaths) }}</td>
           <td>{{ format(item.TotalConfirmed) }}</td>
+          <td>{{ format(item.NewDeaths) }}</td>
+          <td>{{ format(item.NewConfirmed) }}</td>
         </tr>
       </tbody>
     </template>

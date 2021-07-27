@@ -6,9 +6,10 @@
       :dataArray="topTen"
       :dataHeaders="[
         'Country',
-        'CountryCode',
         'Total Deaths',
         'TotalConfirmed',
+        'Today Deaths',
+        'Today Confirmed',
       ]"
     />
 
