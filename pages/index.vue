@@ -24,7 +24,7 @@
         :options="options"
       />
       <BarChart
-        v-else="$vuetify.theme.dark"
+        v-else
         key="666"
         class="mt-4"
         :data="data"
