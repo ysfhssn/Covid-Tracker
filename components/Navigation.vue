@@ -16,7 +16,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer color="green" v-model="drawer" absolute temporary app>
+    <v-navigation-drawer color="green" v-model="drawer" fixed temporary app>
       <v-list nav dense>
         <v-list-item-group active-class="green--text text--accent-4">
           <v-list-item v-for="link in links" :key="link">
