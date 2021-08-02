@@ -23,13 +23,7 @@
         :data="data"
         :options="options"
       />
-      <BarChart
-        v-else
-        key="666"
-        class="mt-4"
-        :data="data"
-        :options="options"
-      />
+      <BarChart v-else key="666" class="mt-4" :data="data" :options="options" />
     </client-only>
   </div>
 </template>
@@ -39,12 +33,16 @@ import Table from '~/components/Table.vue'
 import CardContent from '~/components/CardContent.vue'
 
 export default {
+  head() {
+    return {
+      title: 'Home',
+    }
+  },
   async asyncData({ $axios, error }) {
     try {
       const url = 'https://api.covid19api.com/summary'
       const data = await $axios.$get(url)
       const global = data.Global
-      console.log(global)
       const cardContent = {
         date: new Date(global.Date).toLocaleString('fr-FR'),
         totalConf: global.TotalConfirmed,
@@ -61,7 +59,7 @@ export default {
         topTen,
       }
     } catch (e) {
-      error({ statusCode: e.response.status })
+      error({ statusCode: 404 })
     }
   },
   computed: {
