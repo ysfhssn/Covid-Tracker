@@ -2,6 +2,10 @@
   "name": "covid-tracker",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "npm": "7.x",
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
