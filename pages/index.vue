@@ -19,11 +19,18 @@
     <client-only>
       <BarChart
         class="mt-4"
-        v-if="$vuetify.theme.dark || this.$vuetify.breakpoint.smAndDown"
+        v-if="$vuetify.theme.dark"
         :data="data"
         :options="options"
       />
-      <BarChart v-else key="666" class="mt-4" :data="data" :options="options" />
+      <BarChart
+        class="mt-4"
+        v-else-if="$vuetify.breakpoint.smAndDown"
+        key="666"
+        :data="data"
+        :options="options"
+      />
+      <BarChart v-else key="667" class="mt-4" :data="data" :options="options" />
     </client-only>
   </div>
 </template>
