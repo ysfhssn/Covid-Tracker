@@ -4,82 +4,20 @@
       {{ cardContent.date.replace(',', ' -') }}
     </h1>
     <v-row class="mt-4">
-      <v-col cols="12" sm="6">
+      <v-col v-for="(val, key, index) in formattedCardContent" :key="index" cols="12" sm="6">
         <v-card
           elevation="2"
           class="d-flex flex-column justify-center align-center text-center"
         >
-          <div class="card-styling orange"></div>
-          <v-card-title>Total Confirmed</v-card-title>
-          <v-card-text class="number orange--text">
+          <div :class="`card-styling ${val.color}`"></div>
+          <v-card-title>{{ val.header }}</v-card-title>
+          <v-card-text :class="`number ${val.color}--text`">
             <client-only>
               <number
-                :from="parseInt(cardContent.totalConf * 0.25)"
-                :to="cardContent.totalConf"
+                :from="parseInt(val.value * 0.25)"
+                :to="val.value"
                 :format="theFormat"
-                :duration="4"
-                easing="Power1.easeOut"
-              />
-            </client-only>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="6">
-        <v-card
-          elevation="2"
-          class="d-flex flex-column justify-center align-center text-center"
-        >
-          <div class="card-styling red"></div>
-          <v-card-title>Total Deaths</v-card-title>
-          <v-card-text class="number red--text">
-            <client-only>
-              <number
-                :from="parseInt(cardContent.totalDs * 0.25)"
-                :to="cardContent.totalDs"
-                :format="theFormat"
-                :duration="3"
-                easing="Power1.easeOut"
-              />
-            </client-only>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row class="mt-4">
-      <v-col cols="12" sm="6">
-        <v-card
-          elevation="2"
-          class="d-flex flex-column justify-center align-center text-center"
-        >
-          <div class="card-styling green"></div>
-          <v-card-title>Today Confirmed</v-card-title>
-          <v-card-text class="number green--text">
-            <client-only>
-              <number
-                :from="parseInt(cardContent.newConf * 0.25)"
-                :to="cardContent.newConf"
-                :format="theFormat"
-                :duration="2"
-                easing="Power1.easeOut"
-              />
-            </client-only>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="6">
-        <v-card
-          elevation="2"
-          class="d-flex flex-column justify-center align-center text-center"
-        >
-          <div class="card-styling blue"></div>
-          <v-card-title>Today Deaths</v-card-title>
-          <v-card-text class="number blue--text">
-            <client-only>
-              <number
-                :from="parseInt(cardContent.newDs * 0.25)"
-                :to="cardContent.newDs"
-                :format="theFormat"
-                :duration="1"
+                :duration="parseInt(Object.keys(formattedCardContent).length-index)"
                 easing="Power1.easeOut"
               />
             </client-only>
@@ -100,6 +38,12 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  computed: {
+    formattedCardContent() {
+      const { date, ...rest } = this.cardContent
+      return rest
+    }
   },
   methods: {
     theFormat(number) {

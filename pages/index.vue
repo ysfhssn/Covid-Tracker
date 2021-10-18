@@ -52,10 +52,26 @@ export default {
       const global = data.Global
       const cardContent = {
         date: new Date(global.Date).toLocaleString('fr-FR'),
-        totalConf: global.TotalConfirmed,
-        totalDs: global.TotalDeaths,
-        newConf: global.NewConfirmed,
-        newDs: global.NewDeaths,
+        totalConf: {
+          header: 'Total Confirmed',
+          color: 'orange',
+          value: global.TotalConfirmed
+        },
+        totalDs: {
+          header: 'Total Deaths',
+          color: 'red',
+          value: global.TotalDeaths
+        },
+        newConf: {
+          header: 'Today Confirmed',
+          color: 'green',
+          value: global.NewConfirmed
+        },
+        newDs: {
+          header: 'Today Deaths',
+          color: 'blue',
+          value: global.NewDeaths
+        }
       }
       let countriesData = data.Countries
       countriesData.sort((a, b) => b.TotalDeaths - a.TotalDeaths)
